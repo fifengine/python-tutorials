@@ -1,0 +1,4 @@
+<HBox opaque='1'>
+	<Label name="Title" text="Tutorial 1d"/>
+	<Button name="quitButton" text="Quit"/>
+</HBox>

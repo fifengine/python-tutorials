@@ -106,8 +106,6 @@ class Tutorial1MouseListener(fife.IMouseListener):
 		
 	def mousePressed(self, event):
 		# Mouse press was consumed by a PyChan widget so lets ignore it.
-		# Dont worry too much about this yet.  This will come into play once
-		# we have a GUI in place.
 		if event.isConsumedByWidgets():
 			return
 
@@ -118,8 +116,6 @@ class Tutorial1MouseListener(fife.IMouseListener):
 			# Tell the application to move the player instance to the screen 
 			# coordinate where the user clicked.
 			self._application.movePlayer(clickpoint)
-		else:
-			self._application.maploaddialog.show()
 				
 	def mouseReleased(self, event):
 		pass
@@ -187,10 +183,32 @@ class Tutorial1Application(ApplicationBase):
 		# Lets ensure this one gets executed first.
 		self._eventmanager.addMouseListenerFront(self._mouselistener)
 		
-		# Initialized the dialog box that we defined above that asks the user 
-		# if they want to load a map
-		self._maploaddialog = QueryDialog(self.loadMapAccepted, "Attention!", "Would you like to load the map now?")
+		# Add the quit botton to the top left of the screen
+		# First use pychan to load the interface
+		self._rootpanel = pychan.loadXML('gui/rootpanel.xml')
+		
+		# Map functions to the buttons on the root panel
+		self._rootpanel.mapEvents({ 
+			'quitButton' : self.onQuitButtonPress,
+		})
+		
+		# Finally show the panel so it's visible to the user
+		self._rootpanel.show()
 
+		# Initialize the dialog box to ask the user if they are sure they want
+		# to quit.  The dialog box doesn't get displayed until we call the 
+		# show() function.  The first parameter is the function to call when
+		# the user clicks the "accept" button on the dialog box.
+		self._quitdialog = QueryDialog(self.quitAccepted, "Attention!", "Are you sure you wan to quit?")
+
+	def onQuitButtonPress(self):
+		"""
+		This function gets called when the root panels "quit" button is pressed.
+		"""
+		
+		# Show the quit dialog box asking the user if they want to quit.
+		self._quitdialog.show()
+		
 	def loadMap(self, filename):
 		"""
 		Simple function to load and display a map file. We could of course 
@@ -245,32 +263,30 @@ class Tutorial1Application(ApplicationBase):
 		# use that.  The 4.0 is how fast we want the player instance to move.
 		self._player.move('walk', self.getLocationAt(screenpoint), 4.0)
 
-	def loadMapAccepted(self):
+	def quitAccepted(self):
 		"""
-		This function gets called when the user clicks on the "accept" button
-		on the map load dialog box.
+		This function gets called when the user clicks "accept" on the
+		quit dialog box.  It tells FIFE to exit.
 		"""
-		self.loadMap("../assets/maps/tutorial1map.xml")
-		self._maploaddialog.hide()	
 		
-		# This isn't manditory but I thought I would leave it here for
-		# completeness.  Once the map is loaded we don't need this dialog
-		# anymore.  
-		del self._maploaddialog
-			
+		# The quit function is part of ApplicationBase which we inherit in this
+		# class.
+		self.quit()
+		
+		
 	def _pump(self):
 		"""
 		This function gets called every frame.  This is where you want to
 		call your main game logic code.
 		"""
-		pass
+
+		# On our first frame the map will be loaded and we will grab a reference
+		# to our camera, map and player instance.
+		if not self._mapLoaded:
+			self.loadMap("../assets/maps/tutorial1map.xml")
+			
 		
 	def _isMapLoaded(self):
 		return self._mapLoaded
 		
 	maploaded = property(_isMapLoaded)
-	
-	def _getMapLoadDialog(self):
-		return self._maploaddialog
-		
-	maploaddialog = property(_getMapLoadDialog)
