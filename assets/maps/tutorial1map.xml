@@ -2,7 +2,7 @@
 <map format="1.0" id="level1">
 	<import file="../objects/ground/grass/01/object.xml"></import>
 	<import file="../objects/actors/player/skel/object.xml"></import>
-	<layer transparency="0" id="ground_layer" x_offset="0.0" x_scale="1.0" y_scale="1.0" grid_type="square" pathing="cell_edges_and_diagonals" y_offset="0.0" rotation="0.0">
+	<layer transparency="0" id="ground_layer" x_offset="0.0" x_scale="1.0" y_scale="1.0" grid_type="square" pathing="cell_edges_and_diagonals" y_offset="0.0" rotation="0.0" layer_type="interact" layer_type_id="actor_layer">
 		<instances>
 			<i stackpos="0" r="0" ns="tutorial1objects" x="-2.0" y="0.0" o="grass:01" z="0.0"></i>
 			<i stackpos="0" r="0" x="-2.0" y="1.0" o="grass:01" z="0.0"></i>
@@ -158,7 +158,7 @@
 		<lights>
 		</lights>
 	</layer>
-	<layer transparency="0" id="actor_layer" x_offset="0.0" x_scale="1.0" y_scale="1.0" grid_type="square" pathing="cell_edges_and_diagonals" y_offset="0.0" rotation="0.0">
+	<layer transparency="0" id="actor_layer" x_offset="0.0" x_scale="1.0" y_scale="1.0" grid_type="square" pathing="cell_edges_and_diagonals" y_offset="0.0" rotation="0.0" layer_type="walkable">
 		<instances>
 			<i stackpos="0" id="player" r="0" x="0.0" y="1.0" o="skel" z="0.0"></i>
 		</instances>
