@@ -29,10 +29,12 @@ from fife import fife
 
 from fife.extensions import pychan
 
-# Import the ApplicationBase.  This is where a lot of magic happens but
+# Import the PychanApplicationBase.  This is where a lot of magic happens but
 # you don't need to know the inner workings just yet.  Once you are more
-# familiar with FIFE you'll understand ApplicationBase much more.
-from fife.extensions.basicapplication import ApplicationBase
+# familiar with FIFE you'll understand PychanApplicationBase much more.
+# PychanApplicationBase extends ApplicationBase and adds the proper code to
+# initialize pychan for GUI support.
+from fife.extensions.pychan import pychanbasicapplication
 
 class QueryDialog(object):
 	"""
@@ -141,9 +143,10 @@ class Tutorial1MouseListener(fife.IMouseListener):
 	def mouseDragged(self, event):
 		pass
 
-class Tutorial1Application(PychanApplicationBase):
+class Tutorial1Application(pychanbasicapplication.PychanApplicationBase):
 	"""
-	The main application.  It inherits fife.extensions.ApplicationBase
+	The main application.  It inherits 
+	fife.extensions.pychan.pychanbasicapplication.PychanApplicationBase
 	and implements the _pump() function which gets called every frame.
 	"""
 	def __init__(self, settings):
