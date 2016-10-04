@@ -141,7 +141,7 @@ class Tutorial1MouseListener(fife.IMouseListener):
 	def mouseDragged(self, event):
 		pass
 
-class Tutorial1Application(ApplicationBase):
+class Tutorial1Application(PychanApplicationBase):
 	"""
 	The main application.  It inherits fife.extensions.ApplicationBase
 	and implements the _pump() function which gets called every frame.
