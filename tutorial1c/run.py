@@ -38,8 +38,7 @@ from scripts.tutorial1 import Tutorial1Application
 # a settings-dist.xml file a blank settings file will be created for you by
 # the Setting extension.
 settings = Setting(app_name="tutorial1",
-              settings_file="./settings.xml", 
-              settings_gui_xml="")
+              settings_file="./settings.xml")
 
 def main():
 	# This creates an instance of Tutorial1Application and passes it the
