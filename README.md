@@ -1,4 +1,4 @@
-# Fifengine Python Tutorials ![Python 2.7 Compatiblity](https://img.shields.io/badge/Python%202.7-OK-brightgreen.svg)
+# Fifengine Python Tutorials ![Python 2.7 Compatiblity](https://img.shields.io/badge/Python%202.7-OK-brightgreen.svg) ![Python 3.x Compatiblity](https://img.shields.io/badge/Python%203.x-OK-brightgreen.svg)
 
 Welcome to the FIFE tutorials package.  
 
