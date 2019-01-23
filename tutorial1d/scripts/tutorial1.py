@@ -56,12 +56,12 @@ class QueryDialog(object):
 		# then sets that widgets text property.  Easy isn't it?
 		# This is the title of our dialog box.
 		self._queryname = self._widget.findChild(name="queryname")
-		self._queryname.text = unicode(title)
+		self._queryname.text = str(title, 'utf-8')
 
 		# This searches for a child widget with the name "querytext" and
 		# then sets that widgets text property.  Easy isn't it?		
 		self._querytext = self._widget.findChild(name="querytext")
-		self._querytext.text = unicode(text)
+		self._querytext.text = str(text, 'utf-8')
 
 		# Pychan has some handy functions to bind callbacks to certain widget
 		# events.  In this case when the the 'accept' and 'decline' child 
